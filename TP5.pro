@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     rvbody.cpp \
+    rvbounce.cpp \
     rvcamera.cpp \
     rvcube.cpp \
     rvcurve.cpp \
@@ -34,6 +35,7 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     rvbody.h \
+    rvbounce.h \
     rvcamera.h \
     rvcube.h \
     rvcurve.h \

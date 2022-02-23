@@ -27,6 +27,7 @@
 #include "rvspecularcube.h"
 #include "rvcurve.h"
 #include "rvhelix.h"
+#include "rvbounce.h"
 
 class RVWidget : public QOpenGLWidget,
         protected QOpenGLFunctions

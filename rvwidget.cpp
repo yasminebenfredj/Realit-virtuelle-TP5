@@ -168,12 +168,12 @@ void RVWidget::initializeGL()
     scene.append(torus);
 
     // trajectoire
-    trajectory = new RVHelix();
+    trajectory = new RVBounce(10.0,1.0);
     trajectory->setCamera(camera);
     trajectory->setPosition(QVector3D(0, 0, 0));
     trajectory->setScale(2);
     trajectory->initialize();
-    scene.append(trajectory);
+    //scene.append(trajectory);
 
 
     RVBody* specCube;
