@@ -1,9 +1,10 @@
 #ifndef RVSPHERICALCAMERA_H
 #define RVSPHERICALCAMERA_H
 
+#include "rvstereocamera.h"
 #include "rvcamera.h"
 
-class RVSphericalCamera : public RVCamera
+class RVSphericalCamera : public RVStereoCamera
 {
 public:
     RVSphericalCamera();

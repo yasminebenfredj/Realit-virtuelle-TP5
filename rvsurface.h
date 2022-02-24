@@ -6,17 +6,7 @@
 #include <QtDebug>
 #include "rvbody.h"
 
-/*!
- * \class RVSurface
- * \brief classe abstraite, représente une surface paramètrée P(s, t) et texturée
- *
- * Trois fonctions virtuelles pures sont à surcharger dans toute classe fille.
- * x(s,t)
- * y(s,t)
- * z(s,t)
- * Mais il faut aussi définir le bon intervalle des paramètres t et s
- * ainsi que le nombre de segments de la discrétisation de ces deux intervalles.
- */
+
 class RVSurface : public RVBody
 {
 public:

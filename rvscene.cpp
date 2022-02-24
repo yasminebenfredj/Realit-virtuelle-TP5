@@ -44,8 +44,6 @@ void RVScene::draw()
     foreach (RVBody* body, *this) {
         body->draw();
     }
-    if(skybox!=NULL)
-        skybox->draw();
     if(specCube!=NULL)
         specCube->draw();
     if(stateSoleil)

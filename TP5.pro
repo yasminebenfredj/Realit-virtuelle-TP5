@@ -20,6 +20,7 @@ SOURCES += \
     rvdice.cpp \
     rvhelix.cpp \
     rvlight.cpp \
+    rvorbit.cpp \
     rvplane.cpp \
     rvplanet.cpp \
     rvscene.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     rvspecularcube.cpp \
     rvsphere.cpp \
     rvsphericalcamera.cpp \
+    rvstereocamera.cpp \
     rvsurface.cpp \
     rvtexcube.cpp \
     rvtorus.cpp \
@@ -42,6 +44,7 @@ HEADERS += \
     rvdice.h \
     rvhelix.h \
     rvlight.h \
+    rvorbit.h \
     rvplane.h \
     rvplanet.h \
     rvscene.h \
@@ -49,6 +52,7 @@ HEADERS += \
     rvspecularcube.h \
     rvsphere.h \
     rvsphericalcamera.h \
+    rvstereocamera.h \
     rvsurface.h \
     rvtexcube.h \
     rvtorus.h \
@@ -86,6 +90,7 @@ DISTFILES += \
     VS_skybox_texture.vsh \
     gold.jfif \
     planet.jpg \
+    planet1.jpg \
     planet2.jpg \
     polytech_logo.jpg \
     silver.jpg \

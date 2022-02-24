@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>787</height>
+    <height>810</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -98,6 +98,16 @@
             <string>Fôret</string>
            </property>
           </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBox_stereo">
+          <property name="text">
+           <string>Caméra Stéréo</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
@@ -506,6 +516,31 @@ color: rgb(0, 0, 0);</string>
              <item>
               <property name="text">
                <string>Terre</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Planet 1</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Planet 2</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Planet 3</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Planet 4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Planet 5</string>
               </property>
              </item>
              <item>
@@ -951,6 +986,8 @@ color: rgb(0, 0, 0);</string>
     <slot>changePosYObject(double)</slot>
     <slot>changePosZObject(double)</slot>
     <slot>startAllAnimation()</slot>
+    <slot>changeCamera()</slot>
+    <slot>changeRelative()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -982,7 +1019,7 @@ color: rgb(0, 0, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>184</x>
-     <y>132</y>
+     <y>111</y>
     </hint>
     <hint type="destinationlabel">
      <x>583</x>
@@ -1062,7 +1099,7 @@ color: rgb(0, 0, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>184</x>
-     <y>195</y>
+     <y>174</y>
     </hint>
     <hint type="destinationlabel">
      <x>648</x>
@@ -1109,8 +1146,8 @@ color: rgb(0, 0, 0);</string>
    <slot>takePicture()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>85</x>
-     <y>370</y>
+     <x>100</x>
+     <y>405</y>
     </hint>
     <hint type="destinationlabel">
      <x>90</x>
@@ -1125,8 +1162,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeAmbientLight()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>149</x>
-     <y>489</y>
+     <x>164</x>
+     <y>524</y>
     </hint>
     <hint type="destinationlabel">
      <x>131</x>
@@ -1141,8 +1178,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeDiffuseLight()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>84</x>
-     <y>519</y>
+     <x>99</x>
+     <y>554</y>
     </hint>
     <hint type="destinationlabel">
      <x>82</x>
@@ -1157,8 +1194,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeSpectLight()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>65</x>
-     <y>549</y>
+     <x>80</x>
+     <y>584</y>
     </hint>
     <hint type="destinationlabel">
      <x>33</x>
@@ -1173,8 +1210,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeCoefSpec(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>163</x>
-     <y>625</y>
+     <x>175</x>
+     <y>660</y>
     </hint>
     <hint type="destinationlabel">
      <x>253</x>
@@ -1189,8 +1226,8 @@ color: rgb(0, 0, 0);</string>
    <slot>afficherSoleil(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>53</x>
-     <y>586</y>
+     <x>68</x>
+     <y>621</y>
     </hint>
     <hint type="destinationlabel">
      <x>456</x>
@@ -1205,8 +1242,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeLightPosX(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>61</x>
-     <y>456</y>
+     <x>65</x>
+     <y>491</y>
     </hint>
     <hint type="destinationlabel">
      <x>371</x>
@@ -1221,8 +1258,8 @@ color: rgb(0, 0, 0);</string>
    <slot>changeLightPosY(double)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>456</y>
+     <x>115</x>
+     <y>491</y>
     </hint>
     <hint type="destinationlabel">
      <x>207</x>
@@ -1238,7 +1275,7 @@ color: rgb(0, 0, 0);</string>
    <hints>
     <hint type="sourcelabel">
      <x>165</x>
-     <y>456</y>
+     <y>491</y>
     </hint>
     <hint type="destinationlabel">
      <x>212</x>
@@ -1301,8 +1338,8 @@ color: rgb(0, 0, 0);</string>
    <slot>tournerSoleil(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>76</x>
-     <y>699</y>
+     <x>91</x>
+     <y>734</y>
     </hint>
     <hint type="destinationlabel">
      <x>124</x>
@@ -1323,6 +1360,22 @@ color: rgb(0, 0, 0);</string>
     <hint type="destinationlabel">
      <x>293</x>
      <y>96</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>checkBox_stereo</sender>
+   <signal>clicked()</signal>
+   <receiver>widgetRV</receiver>
+   <slot>changeCamera()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>184</x>
+     <y>202</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>692</x>
+     <y>183</y>
     </hint>
    </hints>
   </connection>

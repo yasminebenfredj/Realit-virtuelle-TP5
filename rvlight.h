@@ -5,6 +5,7 @@
 #include <QColor>
 
 
+
 class RVLight
 {
 public:
@@ -22,11 +23,14 @@ public:
     const QColor &getSpecular() const;
     void setSpecular(const QColor &newSpecular);
 
+
 private:
     QVector3D position = QVector3D(10, 0, 10);
     QColor ambient = QColor(100, 100, 100);
     QColor diffuse = QColor(255, 255, 255);
     QColor specular = QColor(255, 255, 255);
+
+
 };
 
 #endif // RVLIGHT_H

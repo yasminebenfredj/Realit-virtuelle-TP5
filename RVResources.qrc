@@ -62,5 +62,9 @@
         <file>Tantolunden4/posx.jpg</file>
         <file>Tantolunden4/posy.jpg</file>
         <file>Tantolunden4/posz.jpg</file>
+        <file>planet1.jpg</file>
+        <file>planet2.jpg</file>
+        <file>planet3.jpg</file>
+        <file>planet4.jpg</file>
     </qresource>
 </RCC>

@@ -69,7 +69,7 @@ void RVWidget::addObject(int type, QVector3D pos, QQuaternion orientation, QStri
 
 void RVWidget::update()
 {
-    bool relative = true;
+    relative = true;
     QTime currentTime = QTime::currentTime();
     float t = lastTime.msecsTo(currentTime);
     lastTime = currentTime;
@@ -78,6 +78,14 @@ void RVWidget::update()
     if (animationAllOn) {
         scene.update(t, relative);
         world->setPosition(trajectory->pos(t2*0.001));
+        torus->setPosition(trajectory->pos(t2*0.001));
+        soleil->setPosition(trajectorySoleil->pos(t2*0.001));
+        planet0->setPosition(tp0->pos(t2*0.0005));
+        planet1->setPosition(tp1->pos(t2*0.0004));
+        planet2->setPosition(tp2->pos(t2*0.001));
+        planet3->setPosition(tp3->pos(t2*0.0008));
+        planet4->setPosition(tp4->pos(t2*0.0007));
+        light->setPosition(trajectorySoleil->pos(t2*0.001));
     }
     if (animationOn) {
             scene.at(selectedObject)->update(t, relative);
@@ -99,18 +107,18 @@ void RVWidget::initializeGL()
     glEnable(GL_CULL_FACE);
 
     // light
-    RVLight* light = new RVLight();
+    light = new RVLight();
+
 
     // camera
-    RVCamera* camera;
     camera = new RVSphericalCamera();
     camera->setFov(45.0f);
     camera->setPosition(QVector3D(0, 9, 9));
     camera->setZMin(1);
     camera->setZMax(500);
 
+
     // sky
-    RVSkyBox* skybox;
     skybox = new RVSkyBox();
     skybox->setCamera(camera);
     skybox->setPosition(QVector3D(0, 0, 0));
@@ -157,6 +165,56 @@ void RVWidget::initializeGL()
     world->initialize();
     scene.append(world);
 
+
+    // p0
+    planet0 = new RVSphere(2.0);
+    planet0->setCamera(camera);
+    planet0->setPosition(QVector3D(10, 15, 15));
+    planet0->setScale(2);
+    planet0->setObjectName("Planet0");
+    planet0->setTexture(":/textures/planet.jpg", true, true);
+    planet0->initialize();
+    scene.append(planet0);
+    // p1
+    planet1 = new RVSphere(2.0);
+    planet1->setCamera(camera);
+    planet1->setPosition(QVector3D(30, 15, -15));
+    planet1->setScale(1);
+    planet1->setObjectName("Planet1");
+    planet1->setTexture(":/textures/planet1.jpg", true, true);
+    planet1->initialize();
+    scene.append(planet1);
+
+    // p2
+    planet2 = new RVSphere(2.0);
+    planet2->setCamera(camera);
+    planet2->setPosition(QVector3D(-25, 15, -25));
+    planet2->setScale(5);
+    planet2->setObjectName("Planet2");
+    planet2->setTexture(":/textures/planet2.jpg", true, true);
+    planet2->initialize();
+    scene.append(planet2);
+
+    // p3
+    planet3 = new RVSphere(2.0);
+    planet3->setCamera(camera);
+    planet3->setPosition(QVector3D(-10, 20, 30));
+    planet3->setScale(1);
+    planet3->setObjectName("Planet3");
+    planet3->setTexture(":/textures/planet3.jpg", true, true);
+    planet3->initialize();
+    scene.append(planet3);
+
+    // p4
+    planet4 = new RVSphere(2.0);
+    planet4->setCamera(camera);
+    planet4->setPosition(QVector3D(20, 15, -35));
+    planet4->setScale(2);
+    planet4->setObjectName("Planet4");
+    planet4->setTexture(":/textures/planet4.jpg", true, true);
+    planet4->initialize();
+    scene.append(planet4);
+
     // torus
     torus = new RVTorus(0.5,5);
     torus->setCamera(camera);
@@ -168,12 +226,14 @@ void RVWidget::initializeGL()
     scene.append(torus);
 
     // trajectoire
-    trajectory = new RVBounce(10.0,1.0);
+    trajectory = new RVBounce(25.0,1.0);
     trajectory->setCamera(camera);
     trajectory->setPosition(QVector3D(0, 0, 0));
     trajectory->setScale(2);
     trajectory->initialize();
+
     //scene.append(trajectory);
+
 
 
     RVBody* specCube;
@@ -192,13 +252,50 @@ void RVWidget::initializeGL()
                              );
     scene.setSpecCube(specCube);
 
-    RVSphere* soleil ;
-    soleil = new RVSphere(2);
+    soleil = new RVSphere(3);
     soleil->setPosition(light->getPosition());
     soleil->setObjectName("Soleil");
     soleil->setTexture(":/textures/2k_sun.jpg", true, true);
+    soleil->setGlobalColor(light->getAmbient());
+    soleil->setScale(2);
     soleil->initialize();
     scene.setSoleil(soleil);
+
+    trajectorySoleil = new RVOrbit(10.0f,10);
+    trajectorySoleil->setCamera(camera);
+    trajectorySoleil->setPosition(light->getPosition());
+    trajectorySoleil->setScale(3);
+    trajectorySoleil->initialize();
+
+    tp0 = new RVOrbit(planet0->getPosition().y(),planet0->getPosition().z(),planet0->getPosition().x());
+    tp0->setCamera(camera);
+    tp0->setPosition(planet0->getPosition());
+    tp0->setScale(planet0->getScale());
+    tp0->initialize();
+
+    tp1 = new RVOrbit(planet1->getPosition().y(),planet1->getPosition().z(),planet1->getPosition().x());
+    tp1->setCamera(camera);
+    tp1->setPosition(planet1->getPosition());
+    tp1->setScale(planet1->getScale());
+    tp1->initialize();
+
+    tp2 = new RVOrbit(planet2->getPosition().y(),planet2->getPosition().z(),planet2->getPosition().x());
+    tp2->setCamera(camera);
+    tp2->setPosition(planet2->getPosition());
+    tp2->setScale(planet2->getScale());
+    tp2->initialize();
+
+    tp3 = new RVOrbit(planet3->getPosition().y(),planet3->getPosition().z(),planet3->getPosition().x());
+    tp3->setCamera(camera);
+    tp3->setPosition(planet3->getPosition());
+    tp3->setScale(planet3->getScale());
+    tp3->initialize();
+
+    tp4 = new RVOrbit(planet4->getPosition().y(),planet4->getPosition().z(),planet4->getPosition().x());
+    tp4->setCamera(camera);
+    tp4->setPosition(planet4->getPosition());
+    tp4->setScale(planet4->getScale());
+    tp4->initialize();
 
 
 
@@ -214,7 +311,7 @@ void RVWidget::initializeGL()
 void RVWidget::resizeGL(int w, int h)
 {
     float aspect = ((float)w)/h;
-    scene.getCamera()->setAspect(aspect);
+    camera->setAspect(aspect);
     glViewport(0, 0, w, h);
 }
 
@@ -222,7 +319,27 @@ void RVWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     scene.getCamera()->setTarget(scene.at(selectedObject)->getPosition());
-    scene.draw();
+
+    //Mono
+    dynamic_cast<RVStereoCamera*>(camera)->setCameraType(RV_CAMERA_MONO);
+    skybox->draw();
+
+    if(cameraStereo){
+        //Left
+        glColorMask(true, false, false, false);
+        dynamic_cast<RVStereoCamera*>(camera)->setCameraType(RV_CAMERA_LEFT);
+        scene.draw();
+
+        //ridht
+        glClear(GL_DEPTH_BUFFER_BIT);
+        glColorMask(false, true, true, false);
+        dynamic_cast<RVStereoCamera*>(camera)->setCameraType(RV_CAMERA_RIGHT);
+        scene.draw();
+
+        glColorMask(true, true, true, false);
+    }else {
+        scene.draw();
+    }
 }
 
 
@@ -514,6 +631,11 @@ void RVWidget::startAllAnimation()
     lastTime = QTime::currentTime();
 }
 
+void RVWidget::changeCamera()
+{
+    cameraStereo = !cameraStereo;
+}
+
 
 
 
@@ -709,4 +831,3 @@ void RVWidget::setTrajectory(RVCurve *newTrajectory)
 {
     trajectory = newTrajectory;
 }
-

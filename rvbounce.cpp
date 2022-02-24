@@ -16,7 +16,7 @@ float RVBounce::x(double t)
 float RVBounce::y(double t) {
     t = std::fmod(t,2*tMax);
     float y = a*(t*t) + b*t;
-    printf("a = %f \nb = %f\nt = %f \ny = %f\n",a, b, t, y);
+    //printf("a = %f \nb = %f\nt = %f \ny = %f\n",a, b, t, y);
     return y;
 }
 

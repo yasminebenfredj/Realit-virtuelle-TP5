@@ -10,8 +10,8 @@ public:
     RVCamera();
     virtual ~RVCamera();
 
-    QMatrix4x4 viewMatrix();
-    QMatrix4x4 projectionMatrix();
+    virtual  QMatrix4x4 viewMatrix();
+    virtual  QMatrix4x4 projectionMatrix();
 
     //Accesseurs
     QVector3D getPosition() const;

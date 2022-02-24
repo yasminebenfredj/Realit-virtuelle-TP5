@@ -1,11 +1,12 @@
 #include "rvsphericalcamera.h"
 #include <cmath>
 
-RVSphericalCamera::RVSphericalCamera()
+RVSphericalCamera::RVSphericalCamera() :  RVStereoCamera()
 {
     phi = M_PI/4;
     theta = 0;
     rho = 20;
+    updatePosition();
 }
 
 float RVSphericalCamera::getPhi() const
@@ -15,8 +16,7 @@ float RVSphericalCamera::getPhi() const
 
 void RVSphericalCamera::setPhi(float newPhi)
 {
-    if(newPhi > -M_PI/2 && newPhi < M_PI/2)
-        phi = newPhi;
+    phi = qMin(M_PI_2, qMax(newPhi, -M_PI_2));
     this->updatePosition();
 }
 
@@ -38,8 +38,7 @@ float RVSphericalCamera::getRho() const
 
 void RVSphericalCamera::setRho(float newRho)
 {
-    if(newRho > 0)
-        rho = newRho;
+    rho = qMax(newRho, 0.1);
     this->updatePosition();
 }
 

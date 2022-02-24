@@ -28,6 +28,7 @@
 #include "rvcurve.h"
 #include "rvhelix.h"
 #include "rvbounce.h"
+#include "rvorbit.h"
 
 class RVWidget : public QOpenGLWidget,
         protected QOpenGLFunctions
@@ -80,13 +81,33 @@ private:
 protected :
     double radius = 0;
     double rotateSoleil = false ;
+    bool cameraStereo = true;
+    bool relative = true;
     QTime startTime = QTime::currentTime();
     QTime lastTime = QTime::currentTime();
     RVCurve * trajectory ;
+    RVCurve * trajectorySoleil ;
     RVBody* world;
     RVBody* torus;
     RVBody* plane;
     RVBody* dice;
+    RVCamera* camera;
+    RVSkyBox* skybox;
+    RVLight* light;
+    RVSphere* soleil;
+
+    RVBody* planet0;
+    RVBody* planet1;
+    RVBody* planet2;
+    RVBody* planet3;
+    RVBody* planet4;
+
+    RVCurve * tp0;
+    RVCurve * tp1;
+    RVCurve * tp2;
+    RVCurve * tp3;
+    RVCurve * tp4; // à venir tp 5, 6 et 7 :P
+
 
 protected slots:
     void update();
@@ -109,6 +130,7 @@ public slots:
     void changePosYObject(double y);
     void changePosZObject(double z);
     void startAllAnimation();
+    void changeCamera();
 
 
     // QOpenGLWidget interface
